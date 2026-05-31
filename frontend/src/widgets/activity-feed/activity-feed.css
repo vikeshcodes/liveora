@@ -1,0 +1,39 @@
+.activity-widget {
+  width: min(330px, calc(100vw - 88px));
+  padding: 16px;
+}
+
+.activity-list {
+  display: grid;
+  gap: 10px;
+  padding: 0;
+  margin: 14px 0 0;
+  list-style: none;
+}
+
+.activity-item {
+  display: grid;
+  gap: 3px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.activity-item:last-child {
+  padding-bottom: 0;
+  border-bottom: 0;
+}
+
+.activity-title {
+  color: var(--text-primary);
+  font-size: 13px;
+  font-weight: 800;
+}
+
+.activity-detail {
+  overflow: hidden;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

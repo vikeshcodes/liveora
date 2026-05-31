@@ -1,0 +1,26 @@
+.timer-widget {
+  display: grid;
+  width: 190px;
+  gap: 4px;
+  padding: 15px 16px;
+}
+
+.timer-label,
+.timer-state {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.timer-value {
+  color: var(--text-primary);
+  font-size: 34px;
+  font-variant-numeric: tabular-nums;
+  line-height: 1;
+}
+
+.timer-state {
+  color: var(--accent-primary);
+}

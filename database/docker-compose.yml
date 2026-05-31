@@ -1,0 +1,22 @@
+services:
+  postgres:
+    image: postgres:16-alpine
+    pull_policy: if_not_present
+    container_name: creator-os-postgres
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:${POSTGRES_PORT:-5180}:5432"
+    environment:
+      POSTGRES_DB: ${POSTGRES_DB:-creator_os}
+      POSTGRES_USER: ${POSTGRES_USER:-creator_os_user}
+      POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-creator_os_password}
+    volumes:
+      - creator_os_postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${POSTGRES_USER:-creator_os_user} -d ${POSTGRES_DB:-creator_os}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  creator_os_postgres_data:

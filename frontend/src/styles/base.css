@@ -1,0 +1,247 @@
+:root {
+  --bg-dark: rgba(5, 8, 15, 0);
+  --glass-bg: rgba(12, 18, 30, 0.58);
+  --glass-border: rgba(150, 225, 255, 0.22);
+  --text-primary: #f8fbff;
+  --text-secondary: #aebbd0;
+  --accent-primary: #6ee7ff;
+  --accent-secondary: #a78bfa;
+  --success: #3ddc97;
+  --warning: #ffcc66;
+  --danger: #ff6b7a;
+  --radius-lg: 22px;
+  --blur-strength: 16px;
+  --transition-fast: 160ms ease;
+  --transition-smooth: 420ms cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#app {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  overflow: hidden;
+  background: transparent;
+}
+
+body {
+  color: var(--text-primary);
+  cursor: none;
+  font-family: Inter, Manrope, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+  user-select: none;
+  -webkit-font-smoothing: antialiased;
+}
+
+body.debug {
+  cursor: none;
+  user-select: none;
+}
+
+.overlay-stage {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background: var(--bg-dark);
+  letter-spacing: 0;
+}
+
+.overlay-stage::after {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  content: "";
+  background:
+    linear-gradient(118deg, rgba(110, 231, 255, 0.08), transparent 34%),
+    linear-gradient(238deg, transparent 58%, rgba(167, 139, 250, 0.07));
+  opacity: 0;
+}
+
+body.debug .overlay-stage::after {
+  opacity: 0.16;
+}
+
+.widget {
+  position: absolute;
+  z-index: 5;
+  pointer-events: none;
+  will-change: transform, opacity;
+}
+
+.glass-panel {
+  color: var(--text-primary);
+  background:
+    linear-gradient(135deg, rgba(255, 255, 255, 0.07), transparent 42%),
+    var(--glass-bg);
+  border: 1px solid var(--glass-border);
+  border-radius: var(--radius-lg);
+  box-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
+}
+
+@supports (backdrop-filter: blur(8px)) {
+  .glass-panel,
+  .alert-card {
+    backdrop-filter: blur(var(--blur-strength));
+  }
+}
+
+.widget-header {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.status-dot,
+.viewer-dot {
+  width: 8px;
+  height: 8px;
+  flex: 0 0 auto;
+  border-radius: 999px;
+  background: var(--success);
+  box-shadow: 0 0 14px rgba(61, 220, 151, 0.66);
+}
+
+.is-hidden,
+.is-disabled {
+  display: none !important;
+}
+
+.widget-position-top-left {
+  top: 44px;
+  left: 44px;
+}
+
+.widget-position-top-center {
+  top: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.widget-position-top-right {
+  top: 44px;
+  right: 44px;
+}
+
+.widget-position-middle-left {
+  top: 50%;
+  left: 44px;
+  transform: translateY(-50%);
+}
+
+.widget-position-middle-right {
+  top: 50%;
+  right: 44px;
+  transform: translateY(-50%);
+}
+
+.widget-position-bottom-left {
+  bottom: 44px;
+  left: 44px;
+}
+
+.widget-position-bottom-center {
+  bottom: 44px;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.widget-position-bottom-right {
+  right: 44px;
+  bottom: 44px;
+}
+
+.viewer-widget.widget-position-top-left {
+  top: 158px;
+}
+
+.debug-panel {
+  position: absolute;
+  right: 22px;
+  bottom: 22px;
+  z-index: 20;
+  display: none;
+  width: 320px;
+  padding: 14px;
+  color: var(--text-primary);
+  font-size: 12px;
+  line-height: 1.45;
+  background: rgba(2, 6, 14, 0.78);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 14px;
+}
+
+body.debug .debug-panel {
+  display: grid;
+  gap: 8px;
+}
+
+.debug-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+}
+
+.debug-row span:first-child {
+  color: var(--text-secondary);
+}
+
+.debug-warning {
+  display: none;
+  padding: 8px;
+  color: #111827;
+  background: var(--warning);
+  border-radius: 10px;
+}
+
+.debug-warning.is-visible {
+  display: block;
+}
+
+.overlay-empty-state {
+  display: grid;
+  height: 100vh;
+  place-items: center;
+  color: var(--text-secondary);
+  background: transparent;
+}
+
+@media (max-aspect-ratio: 10 / 16) {
+  .widget-position-top-left,
+  .widget-position-top-center,
+  .widget-position-top-right {
+    top: 32px;
+  }
+
+  .widget-position-top-left,
+  .widget-position-middle-left,
+  .widget-position-bottom-left {
+    left: 28px;
+  }
+
+  .widget-position-top-right,
+  .widget-position-middle-right,
+  .widget-position-bottom-right {
+    right: 28px;
+  }
+
+  .widget-position-bottom-left,
+  .widget-position-bottom-center,
+  .widget-position-bottom-right {
+    bottom: 32px;
+  }
+
+  .viewer-widget.widget-position-top-left {
+    top: 136px;
+  }
+}

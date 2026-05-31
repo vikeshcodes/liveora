@@ -1,0 +1,143 @@
+export const THEMES = {
+  "liquid-glass-pro": {
+    id: "liquid-glass-pro",
+    name: "Liquid Glass Pro",
+    className: "theme-liquid-glass-pro",
+    variables: {
+      "--bg-dark": "rgba(5, 8, 15, 0)",
+      "--glass-bg": "rgba(12, 18, 30, 0.58)",
+      "--glass-border": "rgba(150, 225, 255, 0.22)",
+      "--text-primary": "#f8fbff",
+      "--text-secondary": "#aebbd0",
+      "--accent-primary": "#6ee7ff",
+      "--accent-secondary": "#a78bfa",
+      "--success": "#3ddc97",
+      "--warning": "#ffcc66",
+      "--danger": "#ff6b7a",
+      "--radius-lg": "22px",
+      "--blur-strength": "16px",
+      "--transition-fast": "160ms ease",
+      "--transition-smooth": "420ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  },
+  "minimal-matte-pro": {
+    id: "minimal-matte-pro",
+    name: "Minimal Matte Pro",
+    className: "theme-minimal-matte-pro",
+    variables: {
+      "--bg-dark": "rgba(0, 0, 0, 0)",
+      "--glass-bg": "rgba(14, 16, 20, 0.72)",
+      "--glass-border": "rgba(255, 255, 255, 0.13)",
+      "--text-primary": "#ffffff",
+      "--text-secondary": "#b7beca",
+      "--accent-primary": "#8bd3ff",
+      "--accent-secondary": "#d6b06f",
+      "--success": "#61d394",
+      "--warning": "#f5c451",
+      "--danger": "#ff7474",
+      "--radius-lg": "16px",
+      "--blur-strength": "10px",
+      "--transition-fast": "140ms ease",
+      "--transition-smooth": "360ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  },
+  "coding-focus-pro": {
+    id: "coding-focus-pro",
+    name: "Coding Focus Pro",
+    className: "theme-coding-focus-pro",
+    variables: {
+      "--bg-dark": "rgba(3, 7, 12, 0)",
+      "--glass-bg": "rgba(9, 15, 22, 0.66)",
+      "--glass-border": "rgba(92, 210, 255, 0.2)",
+      "--text-primary": "#f4fbff",
+      "--text-secondary": "#9fb2c5",
+      "--accent-primary": "#5bd7ff",
+      "--accent-secondary": "#82f7c6",
+      "--success": "#4ade80",
+      "--warning": "#ffd166",
+      "--danger": "#ff6b7a",
+      "--radius-lg": "18px",
+      "--blur-strength": "12px",
+      "--transition-fast": "140ms ease",
+      "--transition-smooth": "380ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  },
+  "study-calm-pro": {
+    id: "study-calm-pro",
+    name: "Study Calm Pro",
+    className: "theme-study-calm-pro",
+    variables: {
+      "--bg-dark": "rgba(5, 7, 10, 0)",
+      "--glass-bg": "rgba(15, 19, 25, 0.68)",
+      "--glass-border": "rgba(189, 215, 255, 0.17)",
+      "--text-primary": "#fbfcff",
+      "--text-secondary": "#b9c2d0",
+      "--accent-primary": "#9cc8ff",
+      "--accent-secondary": "#f4d58d",
+      "--success": "#70d6a3",
+      "--warning": "#f4c95d",
+      "--danger": "#ff8080",
+      "--radius-lg": "20px",
+      "--blur-strength": "10px",
+      "--transition-fast": "150ms ease",
+      "--transition-smooth": "390ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  },
+  "cyber-clean-pro": {
+    id: "cyber-clean-pro",
+    name: "Cyber Clean Pro",
+    className: "theme-cyber-clean-pro",
+    variables: {
+      "--bg-dark": "rgba(2, 5, 12, 0)",
+      "--glass-bg": "rgba(11, 13, 28, 0.62)",
+      "--glass-border": "rgba(133, 122, 255, 0.2)",
+      "--text-primary": "#f7f7ff",
+      "--text-secondary": "#b3b9d6",
+      "--accent-primary": "#7cf7ff",
+      "--accent-secondary": "#b69cff",
+      "--success": "#4ef2a7",
+      "--warning": "#ffd36e",
+      "--danger": "#ff6f91",
+      "--radius-lg": "17px",
+      "--blur-strength": "14px",
+      "--transition-fast": "150ms ease",
+      "--transition-smooth": "400ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  },
+  "vertical-minimal-pro": {
+    id: "vertical-minimal-pro",
+    name: "Vertical Minimal Pro",
+    className: "theme-vertical-minimal-pro",
+    variables: {
+      "--bg-dark": "rgba(0, 0, 0, 0)",
+      "--glass-bg": "rgba(10, 12, 16, 0.74)",
+      "--glass-border": "rgba(255, 255, 255, 0.14)",
+      "--text-primary": "#ffffff",
+      "--text-secondary": "#c4cad7",
+      "--accent-primary": "#6ee7ff",
+      "--accent-secondary": "#f5c451",
+      "--success": "#64d99b",
+      "--warning": "#ffd166",
+      "--danger": "#ff7474",
+      "--radius-lg": "14px",
+      "--blur-strength": "9px",
+      "--transition-fast": "130ms ease",
+      "--transition-smooth": "340ms cubic-bezier(0.22, 1, 0.36, 1)"
+    }
+  }
+};
+
+export const applyThemeVariables = (rootElement, themeId, remoteThemes = []) => {
+  const remoteTheme = remoteThemes.find((theme) => theme.id === themeId);
+  const localTheme = THEMES[themeId] ?? THEMES["liquid-glass-pro"];
+  const theme = remoteTheme ?? localTheme;
+
+  rootElement.classList.remove(...Object.values(THEMES).map((item) => item.className));
+  rootElement.classList.add(localTheme.className);
+
+  Object.entries(theme.variables ?? localTheme.variables).forEach(([key, value]) => {
+    rootElement.style.setProperty(key, value);
+  });
+
+  return theme;
+};

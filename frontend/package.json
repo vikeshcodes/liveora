@@ -1,0 +1,21 @@
+{
+  "name": "@vikesh-codes-creator-os/frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "vite --host 127.0.0.1 --port 5150 --strictPort",
+    "dev:local": "vite --host 127.0.0.1 --port 5150 --strictPort",
+    "build": "vite build",
+    "preview": "vite preview --host 127.0.0.1 --port 4173",
+    "check": "vite build",
+    "lint": "node -e \"console.log('No frontend lint configured yet')\"",
+    "test": "node -e \"console.log('No frontend tests configured yet')\""
+  },
+  "dependencies": {
+    "gsap": "^3.12.5",
+    "socket.io-client": "^4.8.1"
+  },
+  "devDependencies": {
+    "vite": "^6.0.5"
+  }
+}

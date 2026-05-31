@@ -1,0 +1,21 @@
+.viewer-widget {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  min-width: 190px;
+  padding: 12px 14px;
+}
+
+.viewer-value {
+  color: var(--text-primary);
+  font-size: 20px;
+  font-weight: 900;
+  font-variant-numeric: tabular-nums;
+}
+
+.viewer-label {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 800;
+  text-transform: uppercase;
+}

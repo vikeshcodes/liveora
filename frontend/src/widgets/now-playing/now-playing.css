@@ -1,0 +1,23 @@
+.now-playing-widget {
+  display: grid;
+  width: min(280px, calc(100vw - 88px));
+  gap: 3px;
+  padding: 14px 16px;
+}
+
+.now-label,
+.now-source {
+  color: var(--text-secondary);
+  font-size: 12px;
+  font-weight: 800;
+  letter-spacing: 0;
+  text-transform: uppercase;
+}
+
+.now-title {
+  overflow: hidden;
+  color: var(--text-primary);
+  font-size: 18px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

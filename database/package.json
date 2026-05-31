@@ -1,0 +1,10 @@
+{
+  "name": "@vikesh-codes-creator-os/database",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev:local": "docker compose --env-file .env.local up -d",
+    "logs": "docker compose --env-file .env.local logs -f",
+    "stop": "docker compose --env-file .env.local down"
+  }
+}
