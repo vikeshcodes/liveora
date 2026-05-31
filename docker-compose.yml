@@ -1,0 +1,29 @@
+services:
+  liveora:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: liveora:local
+    container_name: liveora
+    restart: unless-stopped
+    ports:
+      - "127.0.0.1:3080:3080"
+    environment:
+      LIVEORA_MODE: docker
+      CREATOR_OS_MODE: docker
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3080
+      APP_BASE_URL: http://localhost:3080
+      PUBLIC_APP_URL: http://localhost:3080
+      DATABASE_PROVIDER: sqlite
+      DATABASE_URL: file:/app/data/liveora.db
+      LIVEORA_DATA_DIR: /app/data
+      OVERLAY_TOKEN_SECRET: change_this_local_secret
+      # Optional. Leave unset for frictionless localhost-only personal OBS use.
+      # LIVEORA_ADMIN_PASSWORD: change_this_admin_password
+    volumes:
+      - liveora_data:/app/data
+
+volumes:
+  liveora_data:

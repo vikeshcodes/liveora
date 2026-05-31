@@ -1,0 +1,62 @@
+{
+  "projectName": "Vikesh Codes Creator OS",
+  "mode": "local",
+  "owner": {
+    "name": "VikeshCodes",
+    "github": "vikeshcodes",
+    "website": "https://vikeshcodes.in"
+  },
+  "activeOverlayId": "main-overlay",
+  "youtube": {
+    "channelId": "REPLACE_WITH_YOUR_YOUTUBE_CHANNEL_ID",
+    "channelHandle": "@YourChannelHandle",
+    "defaultOverlayId": "main-overlay",
+    "useChatStream": false,
+    "chatPollingEnabled": true,
+    "superchatPollingEnabled": true,
+    "viewerCountPollingEnabled": true,
+    "subscriberPollingEnabled": false,
+    "memberPollingEnabled": false
+  },
+  "ports": {
+    "frontend": 5150,
+    "admin": 5160,
+    "backend": 5170,
+    "database": 5180
+  },
+  "urls": {
+    "frontend": "http://localhost:5150",
+    "admin": "http://localhost:5160",
+    "backend": "http://localhost:5170"
+  },
+  "database": {
+    "host": "localhost",
+    "port": 5180,
+    "name": "creator_os",
+    "user": "creator_os_user",
+    "password": "creator_os_password"
+  },
+  "overlays": [
+    {
+      "id": "main-overlay",
+      "name": "Main Coding Stream Overlay",
+      "theme": "liquid-glass-pro",
+      "layout": "desktop-16x9",
+      "enabled": true
+    },
+    {
+      "id": "vertical-overlay",
+      "name": "Vertical Shorts Live Overlay",
+      "theme": "minimal-matte-pro",
+      "layout": "vertical-9x16",
+      "enabled": true
+    },
+    {
+      "id": "gaming-overlay",
+      "name": "Gaming Overlay",
+      "theme": "liquid-glass-pro",
+      "layout": "desktop-16x9",
+      "enabled": false
+    }
+  ]
+}

@@ -1,0 +1,44 @@
+services:
+  liveora:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: liveora:local-postgres
+    container_name: liveora-postgres-app
+    restart: unless-stopped
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "127.0.0.1:3080:3080"
+    environment:
+      LIVEORA_MODE: docker
+      CREATOR_OS_MODE: docker
+      NODE_ENV: production
+      HOST: 0.0.0.0
+      PORT: 3080
+      APP_BASE_URL: http://localhost:3080
+      PUBLIC_APP_URL: http://localhost:3080
+      DATABASE_PROVIDER: postgres
+      DATABASE_URL: postgresql://liveora:liveora_password@postgres:5432/liveora
+      OVERLAY_TOKEN_SECRET: change_this_local_secret
+
+  postgres:
+    image: postgres:16-alpine
+    container_name: liveora-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: liveora
+      POSTGRES_USER: liveora
+      POSTGRES_PASSWORD: liveora_password
+    volumes:
+      - liveora_postgres_data:/var/lib/postgresql/data
+      - ./database/migrations:/docker-entrypoint-initdb.d:ro
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U liveora -d liveora"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  liveora_postgres_data:
